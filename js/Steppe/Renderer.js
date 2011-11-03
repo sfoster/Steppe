@@ -361,15 +361,20 @@ var Steppe = (function(Steppe) {
                             (top * (framebufferImageData.width << 2)) +
                             (ray << 2);
 
+
+                        var bufferR = (color >> 24) & 0xff, 
+                            bufferG = (color >> 16) & 0xff, 
+                            bufferB = (color >> 8)  & 0xff,
+                            bufferA = 0xff; 
                         for (var j = 0; j < bottom - top + 1; ++j) {
                             for (var i = 0; i < _quality; ++i) {
                                 framebufferData[index]     =
-                                    (color >> 24) & 0xff;
+                                    bufferR;
                                 framebufferData[index + 1] =
-                                    (color >> 16) & 0xff;
+                                    bufferG;
                                 framebufferData[index + 2] =
-                                    (color >> 8)  & 0xff;
-                                framebufferData[index + 3] = 0xff;
+                                    bufferB;
+                                framebufferData[index + 3] = bufferA;
 
                                 index += 4;
                             }
